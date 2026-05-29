@@ -1,0 +1,62 @@
+{
+    "name": "Custom RP2040 26-key",
+    "vendorId": "0xFEED",
+    "productId": "0x0001",
+    "firmwareVersion": 0,
+    "keycodes": ["qmk_lighting"],
+    "matrix": { "rows": 8, "cols": 6 },
+    "layouts": {
+        "keymap": [
+            [
+                {"matrix":[0,0],"x":0,"y":0},
+                {"matrix":[0,1],"x":1,"y":0},
+                {"matrix":[0,2],"x":2,"y":0},
+                {"matrix":[0,3],"x":3,"y":0},
+                {"matrix":[0,4],"x":4,"y":0},
+                {"matrix":[0,5],"x":6,"y":0,"label":"JOY N"}
+            ],
+            [
+                {"matrix":[1,0],"x":0,"y":1},
+                {"matrix":[1,1],"x":1,"y":1},
+                {"matrix":[1,2],"x":2,"y":1},
+                {"matrix":[1,3],"x":3,"y":1},
+                {"matrix":[1,4],"x":4,"y":1},
+                {"matrix":[1,5],"x":6,"y":1,"label":"JOY NE"}
+            ],
+            [
+                {"matrix":[2,0],"x":0,"y":2},
+                {"matrix":[2,1],"x":1,"y":2},
+                {"matrix":[2,2],"x":2,"y":2},
+                {"matrix":[2,3],"x":3,"y":2},
+                {"matrix":[2,5],"x":6,"y":2,"label":"JOY E"}
+            ],
+            [
+                {"matrix":[3,0],"x":0,"y":3},
+                {"matrix":[3,1],"x":1,"y":3},
+                {"matrix":[3,2],"x":2,"y":3},
+                {"matrix":[3,3],"x":3,"y":3},
+                {"matrix":[3,5],"x":6,"y":3,"label":"JOY SE"}
+            ],
+            [
+                {"matrix":[4,0],"x":0,"y":4},
+                {"matrix":[4,1],"x":1,"y":4},
+                {"matrix":[4,2],"x":2,"y":4},
+                {"matrix":[4,3],"x":3,"y":4},
+                {"matrix":[4,5],"x":6,"y":4,"label":"JOY S"}
+            ],
+            [
+                {"matrix":[5,0],"x":0,"y":5},
+                {"matrix":[5,3],"x":3,"y":5},
+                {"matrix":[5,5],"x":6,"y":5,"label":"JOY SW"}
+            ],
+            [
+                {"matrix":[6,3],"x":3,"y":6},
+                {"matrix":[6,5],"x":6,"y":6,"label":"JOY W"}
+            ],
+            [
+                {"matrix":[7,3],"x":3,"y":7},
+                {"matrix":[7,5],"x":6,"y":7,"label":"JOY NW"}
+            ]
+        ]
+    }
+}
