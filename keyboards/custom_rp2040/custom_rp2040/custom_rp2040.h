@@ -10,8 +10,6 @@ enum custom_keycodes {
 };
 
 void matrix_scan_user(void);
-void matrix_set_row_col(uint8_t row, uint8_t col);
-void matrix_clear_row_col(uint8_t row, uint8_t col);
 
 uint16_t joy_angle_offset_get(void);
 void joy_angle_offset_set(uint16_t degrees);

@@ -1,6 +1,9 @@
 #include "custom_rp2040.h"
+#include "action.h"
+#include "action_layer.h"
 #include "analog.h"
 #include "eeconfig.h"
+#include "keymap_common.h"
 
 #define JOY_AXIS_MAX 1023
 #define JOY_CENTER   (JOY_AXIS_MAX / 2)
@@ -143,36 +146,53 @@ static joy_dir_t read_direction(void) {
     return dir;
 }
 
-static void apply_cardinal_mask(uint8_t prev_mask, uint8_t new_mask) {
+static uint8_t   joy_active_mask           = 0;
+static uint16_t  joy_registered_keycodes[4] = {KC_NO, KC_NO, KC_NO, KC_NO};
+
+static uint16_t joy_keycode_for(uint8_t cardinal_index) {
+    const keypos_t key = {.row = cardinal_row[cardinal_index], .col = JOY_MATRIX_COL};
+    return keymap_key_to_keycode(layer_switch_get_layer(key), key);
+}
+
+static void joy_release_direction(uint8_t cardinal_index) {
+    const uint16_t keycode = joy_registered_keycodes[cardinal_index];
+    if (keycode != KC_NO) {
+        unregister_code16(keycode);
+        joy_registered_keycodes[cardinal_index] = KC_NO;
+    }
+}
+
+static void joy_press_direction(uint8_t cardinal_index) {
+    const uint16_t keycode = joy_keycode_for(cardinal_index);
+    if (keycode != KC_NO) {
+        register_code16(keycode);
+        joy_registered_keycodes[cardinal_index] = keycode;
+    }
+}
+
+static void joy_sync_mask(uint8_t mask) {
     for (uint8_t i = 0; i < 4; i++) {
-        const uint8_t bit = (1 << i);
-        if ((prev_mask & bit) && !(new_mask & bit)) {
-            matrix_clear_row_col(cardinal_row[i], JOY_MATRIX_COL);
-        }
-        if (!(prev_mask & bit) && (new_mask & bit)) {
-            matrix_set_row_col(cardinal_row[i], JOY_MATRIX_COL);
+        const uint8_t bit     = (1 << i);
+        const bool    active  = (mask & bit) != 0;
+        const bool    was     = (joy_active_mask & bit) != 0;
+        const uint16_t target = active ? joy_keycode_for(i) : KC_NO;
+
+        if (active && was && target != joy_registered_keycodes[i]) {
+            joy_release_direction(i);
+            joy_press_direction(i);
+        } else if (active && !was) {
+            joy_press_direction(i);
+        } else if (!active && was) {
+            joy_release_direction(i);
         }
     }
+
+    joy_active_mask = mask;
 }
 
 void matrix_scan_user(void) {
-    static uint8_t prev_mask = 0;
-
     const joy_dir_t dir  = read_direction();
     const uint8_t   mask = dir_mask[dir];
 
-    if (mask != prev_mask) {
-        apply_cardinal_mask(prev_mask, mask);
-        prev_mask = mask;
-    }
-}
-
-void matrix_set_row_col(uint8_t row, uint8_t col) {
-    extern matrix_row_t matrix[MATRIX_ROWS];
-    matrix[row] |= (1 << col);
-}
-
-void matrix_clear_row_col(uint8_t row, uint8_t col) {
-    extern matrix_row_t matrix[MATRIX_ROWS];
-    matrix[row] &= ~(1 << col);
+    joy_sync_mask(mask);
 }
