@@ -16,8 +16,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // Col 4 (2 teclas)
         MO(_FN), MO(_MOUSE),
         // Joystick 8 direcciones (visibles en Vial como JOY N..NW)
-        KC_W,    KC_E,    KC_D,    KC_C,
-        KC_S,    KC_Z,    KC_A,    KC_Q
+        KC_W, KC_NO, KC_D, KC_NO,
+        KC_S, KC_NO, KC_A, KC_NO
     ),
 
     [_FN] = LAYOUT_custom(
@@ -46,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_W,    KC_S,    KC_X,    KC_6,    KC_7,
         KC_E,    KC_D,    KC_C,    KC_R,    KC_F, KC_V, KC_SPC, TG(_GAME),
         KC_ESC,  KC_ENT,
-        KC_W,    KC_E,    KC_D,    KC_C,
-        KC_S,    KC_Z,    KC_A,    KC_Q
+        KC_W, KC_NO, KC_D, KC_NO,
+        KC_S, KC_NO, KC_A, KC_NO
     )
 };
 

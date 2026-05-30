@@ -40,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // Col 4 — pulgar (capas)
         MO(_FN), MO(_MMO),
         // Joystick 8 direcciones → movimiento WASD
-        KC_W,  KC_E,  KC_D,  KC_C,
-        KC_S,  KC_Z,  KC_A,  KC_Q
+        KC_W, KC_NO, KC_D, KC_NO,
+        KC_S, KC_NO, KC_A, KC_NO
     ),
  
     // ── FN: Números, F-keys, accesos extra ────────────────────────────────────
@@ -57,8 +57,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // Col 4
         _______, _______,
         // Joystick → flechas de cursor en esta capa
-        KC_UP,   KC_RIGHT, KC_RIGHT, KC_DOWN,
-        KC_DOWN, KC_LEFT,  KC_LEFT,  KC_UP
+        KC_UP, KC_NO, KC_RIGHT, KC_NO,
+        KC_DOWN, KC_NO, KC_LEFT, KC_NO
     ),
  
     // ── MMO: Muchas habilidades (barras de acción) ────────────────────────────
@@ -74,8 +74,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // Col 4
         MO(_FN), _______,
         // Joystick → movimiento igual
-        KC_W,  KC_E,  KC_D,  KC_C,
-        KC_S,  KC_Z,  KC_A,  KC_Q
+        KC_W, KC_NO, KC_D, KC_NO,
+        KC_S, KC_NO, KC_A, KC_NO
     ),
  
     // ── SYS: Sistema, media, reset ────────────────────────────────────────────
@@ -112,8 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // Col 4 (2 teclas)
         MO(_FN), MO(_MOUSE),
         // Joystick 8 direcciones (visibles en Vial como JOY N..NW)
-        KC_W,    KC_E,    KC_D,    KC_C,
-        KC_S,    KC_Z,    KC_A,    KC_Q
+        KC_W, KC_NO, KC_D, KC_NO,
+        KC_S, KC_NO, KC_A, KC_NO
     ),
 
     [_FN] = LAYOUT_custom(
@@ -142,8 +142,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_W,    KC_S,    KC_X,    KC_6,    KC_7,
         KC_E,    KC_D,    KC_C,    KC_R,    KC_F, KC_V, KC_SPC, TG(_GAME),
         KC_ESC,  KC_ENT,
-        KC_W,    KC_E,    KC_D,    KC_C,
-        KC_S,    KC_Z,    KC_A,    KC_Q
+        KC_W, KC_NO, KC_D, KC_NO,
+        KC_S, KC_NO, KC_A, KC_NO
     )
 };*/
 
